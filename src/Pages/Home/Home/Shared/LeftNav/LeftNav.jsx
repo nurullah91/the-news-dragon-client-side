@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import SideCard from './SideCard';
 
 const LeftNav = () => {
 
@@ -26,6 +27,7 @@ const LeftNav = () => {
 
                 }
             </div>
+            <SideCard></SideCard>
         </div>
     );
 };
