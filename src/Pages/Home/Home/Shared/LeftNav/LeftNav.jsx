@@ -9,7 +9,7 @@ const LeftNav = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/categories')
+        fetch('https://the-news-dragon-server-nurllah91.vercel.app/categories')
             .then(res => res.json())
             .then(data => setCategories(data))
             .catch(error => console.log(error))
@@ -22,7 +22,7 @@ const LeftNav = () => {
             <div className='ps-4'>
                 {
                     categories.map(category =>
-                        <p key={category.id}><Link to={`category/${category.id}`} className='text-secondary text-decoration-none'>{category.name}</Link></p>
+                        <p key={category.id}><Link to={`/category/${category.id}`} className='text-secondary text-decoration-none'>{category.name}</Link></p>
                     )
 
                 }
