@@ -1,12 +1,16 @@
 import React, { useContext } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProviders';
 
 const Login = () => {
 
     const { signIn } = useContext(AuthContext);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
+    console.log(from);
 
     const handleSignIn = event => {
         event.preventDefault();
@@ -22,7 +26,7 @@ const Login = () => {
                 console.log(error);
             })
         form.reset();
-        navigate('/')
+        navigate(from, { replace: true });
     }
 
 
@@ -46,7 +50,7 @@ const Login = () => {
                 </Button>
 
                 <Form.Text className="text-secondary">
-                    <h5>Don't have any account?  <Link to='/register'>Register</Link></h5>
+                    <p>Don't have any account?  <Link to='/register'>Register</Link></p>
                 </Form.Text>
                 <Form.Text className="text-success">
 

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProviders';
@@ -6,6 +6,7 @@ import { AuthContext } from '../../../Providers/AuthProviders';
 const Register = () => {
 
     const {createUser} = useContext(AuthContext);
+    const [accepted, setAccepted] = useState(false)
     const navigate = useNavigate()
 
     const handleCreateUser = event =>{
@@ -18,6 +19,10 @@ const Register = () => {
         createUser(email, password);
         form.reset();
        navigate('/login')
+    }
+
+    const handleAccepted = event =>{
+        setAccepted(event.target.checked)
     }
 
     return (
@@ -45,14 +50,18 @@ const Register = () => {
                     <Form.Control type="password" name='password' placeholder="Password" required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Accept terms and condition" />
+                    <Form.Check
+                    onClick={handleAccepted}
+                    type="checkbox" 
+                    label={<>Accept <Link to='/terms'>Terms and conditions</Link></>}
+                     />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button disabled={!accepted} variant="primary" type="submit">
                     Register
                 </Button>
 
                 <Form.Text className="text-secondary">
-                    <h5>Don't have any account?  <Link to='/login'>Login</Link></h5>
+                    <p>Already have an account?  <Link to='/login'>Login</Link></p>
                 </Form.Text>
                 <Form.Text className="text-success">
 

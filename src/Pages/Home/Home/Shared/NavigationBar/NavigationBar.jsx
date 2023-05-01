@@ -28,9 +28,9 @@ const NavigationBar = () => {
 
                         </Nav>
                         <Nav>
-                            <FaUserCircle style={{ fontSize: '2rem' }}></FaUserCircle>
+                            
                                 {
-                                    user ? <Button onClick={handleLogOut} variant="secondary">Logout</Button> :
+                                    user ?<><FaUserCircle style={{ fontSize: '2rem' }}></FaUserCircle><Button onClick={handleLogOut} variant="secondary">Logout</Button></> :
                                         <Link to='/login'><Button variant="secondary">Login</Button></Link>
                                 }
                         </Nav>
