@@ -10,7 +10,7 @@ const Login = () => {
     const location = useLocation();
 
     const from = location.state?.from?.pathname || "/";
-    console.log(from);
+  
 
     const handleSignIn = event => {
         event.preventDefault();
@@ -21,12 +21,14 @@ const Login = () => {
         signIn(email, password)
             .then((user) => {
                 const loggedUser = user.user;
+                form.reset();
+                console.log(from);
+                navigate(from, { replace: true });
             })
             .catch((error) => {
                 console.log(error);
             })
-        form.reset();
-        navigate(from, { replace: true });
+      
     }
 
 
