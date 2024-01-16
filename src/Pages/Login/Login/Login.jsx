@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProviders';
+import useTitle from '../../../useTitle';
 
 const Login = () => {
+    useTitle('login')
 
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -22,7 +24,6 @@ const Login = () => {
             .then((user) => {
                 const loggedUser = user.user;
                 form.reset();
-                console.log(from);
                 navigate(from, { replace: true });
             })
             .catch((error) => {
